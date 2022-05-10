@@ -6,56 +6,62 @@
 | nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| name               | string | null: false               |
-| name(katakana)     | string | null: false               |
+| first_name         | string | null: false               |
+| first_name_kana    | string | null: false               |
+| family_name        | string | null: false               |
+| family_name_kana   | string | null: false               |
 | birthday           | string | null: false               |
 
 ### Association
 
 - has_many :items
-
+- has_many :buy_informations
 
 ## items テーブル
 
-| Column          | Type    | Options                        |
-| --------------- | ------- | ------------------------------ |
-| item_name       | string  | null: false                    |
-| description     | text    | null: false                    |
-| category        | string  | null: false                    |
-| status          | string  | null: false                    |
-| shipping_charge | integer | null: false                    |
-| days_to_ship    | integer | null: false                    |
-| price           | integer | null: false                    |
-| sell_user       | string  | null: false, foreign_key: true |
+| Column             | Type    | Options                        |
+| ------------------ | ------- | ------------------------------ |
+| item_name          | string  | null: false                    |
+| description        | text    | null: false                    |
+| category_id        | integer | null: false                    |
+| status_id          | integer | null: false                    |
+| shipping_charge_id | integer | null: false                    |
+| shipping_area_id   | integer | null: false                    |
+| days_to_ship_id    | integer | null: false                    |
+| price              | integer | null: false                    |
+| user               | string  | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_one    :buy_information
-- has_one    :ship_information
 
 
 ## buy_informations テーブル
 
 | Column   | Type   | Options                        |
 | -------- | ------ | ------------------------------ |
-| buy_user | string | null: false, foreign_key: true |
-| buy_item | string | null: false, foreign_key: true |
+| user     | string | null: false, foreign_key: true |
+| item     | string | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :items
+- belongs_to :item
+- belongs_to :user
+- has_one    :ship_information
 
 
 ## ship_informations テーブル
 
-| Column      | Type    | Options     |
-| ----------- | ------- | ----------- |
-| PostalCode  | integer | null: false |
-| ShipRegion  | string  | null: false |
-| ShipCity    | string  | null: false |
-| ShipAddress | string  | null: false |
+| Column       | Type    | Options     |
+| ------------ | ------- | ----------- |
+| postal_code  | string  | null: false |
+| ship_region  | string  | null: false |
+| ship_city    | string  | null: false |
+| ship_address | string  | null: false |
+| building     | string  | null: false |
+| tel_number   | string  | null: false |
 
 ### Association
 
-- belongs_to :items
+- belongs_to :buy_information
