@@ -86,9 +86,21 @@ RSpec.describe Item, type: :model do
       end
 
       it 'userが紐づいていなければ出品できない' do
-        @item.user_id = nil
+        @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User can't be blank")
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
+
+      it 'priceが300円未満では出品できない' do
+        @item.price = "299"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
+
+      it 'priceが10000000円以上では出品できない' do
+        @item.price = "10000000"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
     end
   end
