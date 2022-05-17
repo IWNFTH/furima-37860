@@ -9,8 +9,8 @@ RSpec.describe Item, type: :model do
     context '新規登録できるとき' do
       it 'image,item_name,description,category_id,days_to_ship_id,shipping_area_id,shipping_charge_id,status_id,priceが正しく入力されていれば登録できる' do
         expect(@item).to be_valid
-        end
       end
+    end
 
     context '新規登録できないとき' do
       it 'imageが空だと登録できない' do
@@ -20,13 +20,13 @@ RSpec.describe Item, type: :model do
       end
 
       it 'item_nameが空だと登録できない' do
-        @item.item_name = ""
+        @item.item_name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Item name can't be blank")
       end
 
       it 'descriptionが空だと登録できない' do
-        @item.description = ""
+        @item.description = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
@@ -62,25 +62,25 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが空だと登録できない' do
-        @item.price = ""
+        @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it 'priceが半角英数字混合では出品できない' do
-        @item.price = "100yen"
+        @item.price = '100yen'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it 'priceが半角英字のみでは出品できない' do
-        @item.price = "yen"
+        @item.price = 'yen'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it 'priceが全角文字では出品できない' do
-        @item.price = "１０００"
+        @item.price = '１０００'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
@@ -88,17 +88,17 @@ RSpec.describe Item, type: :model do
       it 'userが紐づいていなければ出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
 
       it 'priceが300円未満では出品できない' do
-        @item.price = "299"
+        @item.price = '299'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it 'priceが10000000円以上では出品できない' do
-        @item.price = "10000000"
+        @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
