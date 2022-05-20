@@ -48,10 +48,10 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one    :ship_info
+- has_one    :address
 
 
-## ship_info テーブル
+## address テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
