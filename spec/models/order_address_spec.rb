@@ -28,7 +28,7 @@ RSpec.describe OrderAddress, type: :model do
       it '郵便番号が空では登録できない' do
         @order_address.postal_code = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it '都道府県が空では登録できない' do
@@ -52,37 +52,37 @@ RSpec.describe OrderAddress, type: :model do
       it '電話番号が空では登録できない' do
         @order_address.tel_number = ''
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Tel number is invalid")
+        expect(@order_address.errors.full_messages).to include('Tel number is invalid')
       end
 
       it '郵便番号は全角では登録できない' do
-        @order_address.postal_code = "０００−００００"
+        @order_address.postal_code = '０００−００００'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it '郵便番号はハイフンなしでは登録できない' do
-        @order_address.postal_code = "0000000"
+        @order_address.postal_code = '0000000'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@order_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it '電話番号は全角では登録できない' do
         @order_address.tel_number = '０００００００００００'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Tel number is invalid")
+        expect(@order_address.errors.full_messages).to include('Tel number is invalid')
       end
 
       it '電話番号は9桁以下では登録できない' do
         @order_address.tel_number = '12345678'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Tel number is invalid")
+        expect(@order_address.errors.full_messages).to include('Tel number is invalid')
       end
 
       it '電話番号は12桁以上では登録できない' do
         @order_address.tel_number = '123456789012'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Tel number is invalid")
+        expect(@order_address.errors.full_messages).to include('Tel number is invalid')
       end
 
       it 'userが紐付いていないと登録できない' do
