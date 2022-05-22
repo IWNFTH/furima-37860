@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  before do
-    @item = FactoryBot.build(:item)
-  end
-
   describe '商品出品' do
+    before do
+      @item = FactoryBot.build(:item)
+    end
+
     context '新規登録できるとき' do
       it 'image,item_name,description,category_id,days_to_ship_id,shipping_area_id,shipping_charge_id,status_id,priceが正しく入力されていれば登録できる' do
         expect(@item).to be_valid

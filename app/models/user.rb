@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-  # has_many :order
+  has_many :orders
 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i # 半角英数字混合のバリデーション
   VALID_NAME_KANA = /\A[ァ-ヶー－]+\z/ # 全角カタカナ表記のバリデーション
