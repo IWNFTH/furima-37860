@@ -3,7 +3,7 @@ const pay = () => {
   const submit = document.getElementById("button");
   submit.addEventListener("click", (e) => {
     e.preventDefault();
-    
+
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
     const card = {
